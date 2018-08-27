@@ -7,12 +7,20 @@ class App extends Component {
     super(props);
     this.state = {
       count : props.count,
-      name : '선관'
+      name : '선관',
+      number : ''  // 넘버를 초기화 해준다
     }
 
+    this.handleChange = this.handleChange.bind(this);
     this.incrementCount = this.incrementCount.bind(this);
     this.decrementCount = this.decrementCount.bind(this);
     this.resetCount = this.resetCount.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      number : e.target.value
+    })
   }
 
   incrementCount() {
@@ -38,7 +46,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        
+        <div>{this.state.number}</div>
+        <input 
+          type="text" 
+          value={this.state.number}
+          onChange= {this.handleChange}
+          />
         <span>{this.state.count}</span>
         <button onClick= {this.resetCount}>reset</button>
         <button onClick= {this.incrementCount}>+</button>
@@ -53,7 +66,8 @@ class App extends Component {
 
 App.defaultProps = {
   count:0,
-  name:'선관'
+  name:'선관',
+  number: '123'
 }
 
 export default App;
